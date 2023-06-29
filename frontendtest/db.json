@@ -1,0 +1,16 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "liquor": "Gin",
+      "mixer": "Lemon Juice"
+    }
+  ],
+  "output": [
+    {
+      "id": 1,
+      "body": "chat GPT output",
+      "postId": 1
+    }
+  ]
+}
