@@ -2,15 +2,15 @@ from fastapi import BackgroundTasks,FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from .gpt import BarAIMessage
-
-if "OPENAI_API_KEY" not in os.environ:
-    os.environ["OPENAI_API_KEY"] = "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"
+import requests
 
 app = FastAPI()
 
 origins = [
     "http://localhost:3000",
-    "localhost:3000"
+    "localhost:3000",
+    "https://fitness-ai.netlify.app/",
+    "fitness-ai.netlify.app/"
 ]
 
 app.add_middleware(
@@ -34,7 +34,8 @@ selections = []
 @app.post("/menu", tags=["menu"])
 async def add_post(selection:dict, background_tasks: BackgroundTasks) -> dict:
   selections.append(selection)
-  background_tasks.add_task(BarAIMessage, selections)
+  BarAIMessage(selections)
+  requests.post('https://fitaibackend-1-m9779176.deta.app/output', json = selections)
   return {"data": {"Output added"}}
 
 @app.get("/menu", tags=["menu"])

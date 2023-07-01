@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/navbar"
 import Essentials from "./pages/Essentials"
 import MyMixer from './pages/MyMixer';
-import axios from 'axios';
-import {useState, useEffect} from 'react'
+
 
 
 function App() {

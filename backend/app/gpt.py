@@ -2,13 +2,15 @@ from langchain.chains import LLMChain
 from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 import requests
+import os
+import config
 
-def BarAIMessage(selections):
-    data = selections[-1]
+OPENAI_KEY = config.OPENAIKEY
 
-    OPENAI_API_KEY="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"
+def BarAIMessage(selection):
+    data = selection
 
-    llm = OpenAI(temperature = 0.9, openai_api_key="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")
+    llm = OpenAI(temperature = 0.9, openai_api_key=OPENAI_KEY)
 
     prompt = PromptTemplate(
         input_variables = ["liquor", "mixer","percentage","servings","difficulty","holiday"],
@@ -28,5 +30,9 @@ def BarAIMessage(selections):
         "id": len(selections)+1,
         "body": output,
     }
-    x = requests.post('http://localhost:8000/output', json = outputs)
+    x = requests.post('https://fitaibackend-1-m9779176.deta.app/output', json = outputs)
     print(x.text)
+
+# test = {"liquor":"Vodka","mixer":"TEST","percentage":"","servings":"","difficulty":"Any","holiday":"Any"}
+# y = requests.post('https://fitaibackend-1-m9779176.deta.app/menu', json=test)
+# print(y.text)
