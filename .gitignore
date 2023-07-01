@@ -1,2 +1,3 @@
 .space
-BarAI/backend/app/config.py
+.DS_Store
+.config
