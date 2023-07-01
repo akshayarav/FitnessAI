@@ -1,3 +1,3 @@
 .space
 .DS_Store
-.config
+backend/app/config.py
