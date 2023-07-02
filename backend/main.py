@@ -1,4 +1,4 @@
-#Run this to start up backend
+#Run this to start local backend
 
 import uvicorn
 
