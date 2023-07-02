@@ -6,8 +6,6 @@ from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 
 
-#ISSUE with FitnessAI Function, seems to be a problem with deta and openAI, try switching to Vercel if problem persists
-
 app = FastAPI()
 key = config.open_ai_key
 
@@ -47,8 +45,8 @@ def FitnessAI(selection):
 
 
     input = {"test":"test"}
-    chain = LLMChain(llm=llm, prompt=promptTest)
-    out = chain.run(input)
+    chain = LLMChain(llm=llm, prompt=prompt)
+    out = chain.run(selection)
     data = {
         "body": out,
     }
