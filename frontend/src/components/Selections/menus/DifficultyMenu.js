@@ -4,9 +4,9 @@ const DifficultyMenu=() => {
     return (
         <div>
             <h1>
-                Difficulty:
+                Experience:
             </h1>
-            <select id="difficulty">
+            <select id="experience">
                 <option>Any</option>
                 <option>Beginner</option>
                 <option>Intermediate</option>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {GenerateMenu, FoodMenu, LiquorMenu, MixerMenu, AlcoholMenu, ServingsMenu, DifficultyMenu, HolidayMenu} from './menus'
+import {GenerateMenu, GoalMenu, AgeMenu, GenderMenu, HeightMenu, WeightMenu, DifficultyMenu, DaysMenu} from './menus'
 import Output from './menus/output.js'
 import './index.css'
 
@@ -8,26 +8,27 @@ const SelectMenu = () => {
         <div>
             <div className = "top">
                 <div className = "left">
-                    <LiquorMenu /> 
+                    <AgeMenu /> 
                     <p></p>
-                    <AlcoholMenu />
+                    <HeightMenu />
                     <p></p>
                     <DifficultyMenu />
                 </div>
                 <div className = "right">
-                    <MixerMenu />
+                    <GenderMenu />
                     <p></p>
-                    <ServingsMenu />
+                    <WeightMenu />
                     <p></p>
-                    <HolidayMenu />
+                    <DaysMenu />
                 </div>
                 <div className = "output">
                     <Output />
                 </div>
             </div>
         <div className = "bottom">
-                <FoodMenu />
-                <GenerateMenu />
+            <GoalMenu />
+            <p></p>
+            <GenerateMenu />
         </div>
         </div>
     )

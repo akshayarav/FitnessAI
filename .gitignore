@@ -1,3 +1,4 @@
 .space
 .DS_Store
 backend/app/config.py
+frontend/build

@@ -1,13 +1,24 @@
 import React, {useEffect, useState} from 'react'
-import axios from 'axios';
+import axios from 'axios'
+
+const baseURL = process.env.REACT_APP_URL
 
 export default function Output() {
   const [output, setOutput] = useState([])
 
   const fetchOutputs = async() => {
-    const response = await fetch("https://fitaibackend-1-m9779176.deta.app/output")
-    const outputs = await response.json()
-    setOutput(outputs.data[outputs.data.length-1])
+    axios.get(baseURL)
+      .then(response => {
+        try{
+          setOutput(response.data.data[response.data.data.length-1].body)
+          console.log(response.data.data[response.data.data.length-1].body)
+        }
+        catch (error) {
+          console.log(error)
+        }
+      }, error => {
+        console.log(error);
+      });
     }
   
   useEffect(() => {
@@ -18,16 +29,8 @@ export default function Output() {
     setOutput([])
   }, [])
 
-
   return (
-    <p> {output.body} </p>
+    <p> {output} </p>
   )
-  }
 
-export const Disable = async() => {
-    var output = Output.output
-    const response = await fetch("https://fitaibackend-1-m9779176.deta.app/output")
-    const outputs = await response.json()
-    if (outputs.data[outputs.data.length-1] != output){
-    }
-  }
+}

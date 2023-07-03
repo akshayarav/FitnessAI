@@ -1,19 +1,21 @@
 import React from 'react';
 import {AiOutlineReload} from 'react-icons/ai';
-import axios from '../../../services/instance'
+import axios from 'axios'
 import $ from "jquery"
 
 
+const baseURL = process.env.REACT_APP_URL
 
 const GenerateMenu =() => {
     function Post() {
-      axios.post('menu', {
-        liquor: $("#liquor :selected").text(),
-        mixer: $("#mixer").val(),
-        percentage: $("#percentage").val(),
-        servings: $("#servings").val(),
-        difficulty: $("#difficulty :selected").text(),
-        holiday: $("#holiday :selected").text()
+      axios.post(baseURL, {
+        age: $("#age").val(),
+        gender: $("#gender").val(),
+        height: $("#height").val(),
+        weight: $("#weight").val(),
+        days_per_week: $("#days_per_week :selected").text(),
+        experience: $("#experience :selected").text(),
+        goal: $("#goal").val()
       })
       .then(function (response) {
         console.log(response);

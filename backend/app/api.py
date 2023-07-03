@@ -31,11 +31,21 @@ def FitnessAI(selection):
     llm = ChatOpenAI(temperature = 0.9, model_name='gpt-3.5-turbo', openai_api_key=key)
 
     prompt= PromptTemplate(
-        input_variables = ["liquor", "mixer","percentage","servings","difficulty","holiday"],
-        template = "What is a cocktail recipe containing {liquor} and using the mixer {mixer}. \
-            It should have an alcohol percentage of about {percentage} and serve {servings} people. \
-            The difficulty should be {difficulty} and be {holiday} themed? \
-            Include the alcohol percentage, serving number, and difficulty at the top of the output in its own section"
+        input_variables = ["age", "gender", "height","weight","days_per_week","experience", "goal"],
+        template = """
+        Act as a professional fitness expert and trainer known as FitnessAI. Create a structured summary of an exercise plan specifically tailored for me. 
+        I am a {gender}, {age} years old, {height} inches tall and {weight} pounds. I want to work out {days_per_week} days per week, and have {experience} experience 
+        in the gym. My goal is {goal}.
+
+      Provide the workout plan in the below JSON structure:
+        {{
+          plan: {{
+              goal: string,
+              split: Day x: name,
+              exercise_selection: string
+          }}
+        }}
+        """
     )
 
     promptTest = PromptTemplate(
@@ -55,6 +65,8 @@ def FitnessAI(selection):
 @app.post("/") 
 async def add(selection:dict, background_tasks: BackgroundTasks) -> dict:
   # background_tasks.add_task(FitnessAI, selection)
+  print("RUNNING")
+  print(selection)
   output = FitnessAI(selection)
   outputs.append(output)
   return {"data": "Output Added"}

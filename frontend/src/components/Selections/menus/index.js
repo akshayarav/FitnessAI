@@ -1,10 +1,10 @@
-import LiquorMenu from "./LiquorMenu";
-import MixerMenu from "./MixerMenu";
-import AlcoholMenu from "./AlcoholMenu";
-import ServingsMenu from "./ServingsMenu";
+import AgeMenu from "./AgeMenu";
+import GenderMenu from "./GenderMenu";
+import HeightMenu from "./HeightMenu";
+import WeightMenu from "./WeightMenu";
 import DifficultyMenu from "./DifficultyMenu";
-import HolidayMenu from "./HolidayMenu";
-import FoodMenu from "./FoodMenu";
+import DaysMenu from "./DaysMenu";
 import GenerateMenu from "./GenerateMenu";
+import GoalMenu from "./GoalMenu"
 
-export {GenerateMenu, LiquorMenu, MixerMenu, AlcoholMenu, ServingsMenu, DifficultyMenu, HolidayMenu, FoodMenu}
+export {GenerateMenu, AgeMenu, GenderMenu, HeightMenu, WeightMenu, DifficultyMenu, DaysMenu, GoalMenu}
