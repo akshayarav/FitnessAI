@@ -17,6 +17,7 @@ export default function Output() {
     }
   }
   useEffect(() => {
+    setOutput(null)
     fetchOutputs()
     const intervalId = setInterval(fetchOutputs, 5000); // Fetch data every 5 seconds
 
@@ -24,6 +25,7 @@ export default function Output() {
       clearInterval(intervalId); // Clean up interval on unmount
     };
   }, [])
+
 
   if (!output) return null  // render nothing if output is not available yet
   
