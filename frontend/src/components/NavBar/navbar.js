@@ -10,11 +10,8 @@ const NavBar= () =>{
       <div className="mx-auto order-0 nav-main">
         MyCoach
       </div> 
-      <div>
+      {/* <div>
         <ul className = "navbar-nav ml-auto">
-          <li className="nav-item">
-              <a className="nav-link" href="essentials">Essentials</a>
-            </li>
             <li className="nav-item">
               <a className="nav-link" href="faq">FAQ</a>
             </li>
@@ -22,7 +19,7 @@ const NavBar= () =>{
               <a className="nav-link" href="login">Login</a>
             </li>
         </ul>
-      </div>
+      </div> */}
     </nav>
   )
 };
