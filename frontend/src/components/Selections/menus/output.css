@@ -1,0 +1,19 @@
+.plan {
+    margin: 20px auto;
+    padding: 20px;
+    background: #f5f5f5;
+    width: 80%;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.plan h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.plan div, .plan p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #333;
+}

@@ -24,8 +24,7 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-outputs = [
-]
+outputs = []
 
 def FitnessAI(selection):
     llm = ChatOpenAI(temperature = 0.9, model_name='gpt-3.5-turbo', openai_api_key=key)
@@ -63,8 +62,7 @@ def FitnessAI(selection):
     return data
   
 @app.post("/") 
-async def add(selection:dict, background_tasks: BackgroundTasks) -> dict:
-  # background_tasks.add_task(FitnessAI, selection)
+async def add(selection:dict) -> dict:
   print("RUNNING")
   print(selection)
   output = FitnessAI(selection)
@@ -75,5 +73,7 @@ async def add(selection:dict, background_tasks: BackgroundTasks) -> dict:
 def get() -> dict:
   return {"data": outputs}
 
-# FitnessAI({"test":"test"})
-# print(outputs)
+@app.delete("/")
+def clear():
+  outputs.clear()
+  return {"data": "Outputs Cleared"}
