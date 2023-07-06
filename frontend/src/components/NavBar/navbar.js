@@ -3,6 +3,7 @@ import logo from '../logos/MyMixer.png';
 import MixerLogo from '../MixerLogo/MixerLogo'
 import './index.css'
 
+
 const NavBar= () =>{
   return (
     <nav className="navbar navbar-expand-md bg-light">
