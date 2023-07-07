@@ -4,7 +4,7 @@ const DaysMenu=() => {
     return (
         <div>
             <h1>
-                Days Per Week:
+                Days/Week:
             </h1>
             <select id="days_per_week" placeholder="None">
                 <option>1</option>

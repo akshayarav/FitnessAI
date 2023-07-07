@@ -31,9 +31,11 @@ const GenerateMenu =() => {
     }
 
     return (
+      <div className = "generate">
         <button type="button" className="btn btn-success" onClick={handlePost} disabled = {isLoading} id="Generate">
             Generate <AiOutlineReload />
         </button>
+      </div>
     )
 }
 

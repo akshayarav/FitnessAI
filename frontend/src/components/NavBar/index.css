@@ -1,6 +1,5 @@
 .nav-item {
     font-size: 15px;
-    position: relative;
 }
 
 .nav-link {
@@ -10,7 +9,6 @@
 
 .nav-main {
     font-size: 30px;
-    position: relative;
     font-family: "Courier";
     font-weight: bold;
 }

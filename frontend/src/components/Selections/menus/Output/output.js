@@ -31,16 +31,16 @@ export default function Output() {
   
   
 
-    const plan = output.plan;
+  const plan = output.plan;
 
-    return (
-        <div className="plan">
-            <h1>Goal: {plan.goal}</h1>
-            <h2>Split:</h2>
-            {Object.entries(plan.split).map(([day, activity], index) => (
-                <p key={index}>{day}: {activity}</p>
-            ))}
-            <p>Exercise Selection: {plan.exercise_selection}</p>
-        </div>
-    );
+  return (
+      <div className="plan">
+          <h1>Goal: {plan.goal}</h1>
+          <h2>Split:</h2>
+          {Object.entries(plan.split).map(([day, activity], index) => (
+              <p key={index}>{day}: {activity}</p>
+          ))}
+          <p>Exercise Selection: {plan.exercise_selection}</p>
+      </div>
+  );
 }

@@ -9,18 +9,8 @@ const NavBar= () =>{
     <nav className="navbar navbar-expand-md bg-light">
       <MixerLogo />
       <div className="mx-auto order-0 nav-main">
-        MyCoach
+        FitnessAI
       </div> 
-      {/* <div>
-        <ul className = "navbar-nav ml-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="faq">FAQ</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="login">Login</a>
-            </li>
-        </ul>
-      </div> */}
     </nav>
   )
 };

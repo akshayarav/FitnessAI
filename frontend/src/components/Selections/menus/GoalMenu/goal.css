@@ -1,0 +1,9 @@
+.goal_menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.generate {
+    margin-top: 1rem;
+}
