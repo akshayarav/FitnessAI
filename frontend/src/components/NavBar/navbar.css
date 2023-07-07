@@ -1,0 +1,41 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-link {
+    color: black;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.nav-main {
+    font-size: 30px;
+    font-family: "Courier";
+    font-weight: bold;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+
+img{
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+
+@media only screen and (max-width: 600px) {
+    .logo {
+        width: 40px;
+        height: 40px;
+        position: relative;
+    }
+    
+    img{
+        width: 40px;
+        height: 40px;
+        position: relative;
+    }
+}

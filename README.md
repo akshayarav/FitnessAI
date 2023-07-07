@@ -5,8 +5,8 @@ Currently in development with several issues, deployment link:
 https://fitness-ai.netlify.app
 
 
-## Packages:
-- 
+## API:
+- OpenAI API
 
 ## Frameworks:
 - React
@@ -17,3 +17,7 @@ https://fitness-ai.netlify.app
 ## Deployed with:
 - Netlify
 - Deta Space
+
+## Resources:
+- Midjourney
+- ChatGPT 4

@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/NavBar/navbar"
-import Essentials from "./pages/Essentials"
-import MyMixer from './pages/MyMixer';
+import SelectMenu from './components/Selections/SelectMenu';
+import Footer from './components/Footer/footer'
 import { useEffect } from "react";
 import axios from "axios";
 
@@ -22,7 +22,8 @@ function App() {
   return (
     <div>
       <NavBar />
-      <MyMixer />
+      <SelectMenu />
+      <Footer />
     </div>
   );
 }
