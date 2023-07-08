@@ -13,7 +13,7 @@ origins = [
     "http://localhost:3000",
     "localhost:3000",
     "https://fitness-ai.netlify.app",
-    "fitness-ai.netlify.api"
+    "fitness-ai.netlify.app"
 ]
 
 app.add_middleware(
@@ -34,17 +34,24 @@ def FitnessAI(selection):
         template = """
         Act as a professional fitness expert and trainer known as FitnessAI. Create a structured summary of an exercise plan specifically tailored for me. 
         I am a {gender}, {age} years old, {height} inches tall and {weight} pounds. I want to work out {days_per_week} days per week, and have {experience} experience 
-        in the gym. My goal is {goal}.
+        in the gym. My goal is {goal}. 
 
       Provide the workout plan in the below JSON structure:
         {{
           plan: {{
               goal: string,
-              split: Day x: name,
-              exercise_selection: string
-              id {id}
+              split: {{
+                Day x {{
+                  name: string, 
+                  exercises: list 
+                  }}
+                }},
+              tips: string,
+              id: {id}
           }}
         }}
+
+        For the exercises provide each exericse in the following form: Exercise Name: Sets x Reps
         """
     )
 

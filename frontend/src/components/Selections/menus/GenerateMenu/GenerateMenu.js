@@ -5,7 +5,6 @@ import $ from "jquery";
 import { OutputContext } from '../../../../context/OutputContext';
 import axios from 'axios'
 import GridLoader from "react-spinners/GridLoader";
-import "./generate.css"
 
 
 const baseURL = process.env.REACT_APP_URL
@@ -49,7 +48,8 @@ const GenerateMenu =() => {
             // Find the element with the same id
             for (let item of response.data.data) {
               let body = JSON.parse(item.body);
-              if (body.plan && body.plan.id === id) {
+              console.log(body.plan.id)
+              if (body.plan.id === id) {
                 outputData = body;
                 break;
               }
@@ -64,7 +64,6 @@ const GenerateMenu =() => {
             await new Promise(resolve => setTimeout(resolve, 2000));
           }
         }
-        console.log(outputData.plan.id);
         return outputData;  // Return the data
       }
 
