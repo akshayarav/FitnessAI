@@ -4,6 +4,8 @@ import SelectMenu from './components/Selections/SelectMenu';
 import Footer from './components/Footer/footer'
 import { useEffect } from "react";
 import axios from "axios";
+import './index.css'
+import { OutputContextProvider } from "./context/OutputContextProvider";
 
 
 const baseURL = process.env.REACT_APP_URL
@@ -20,11 +22,16 @@ function App() {
   }, [])
   
   return (
-    <div>
-      <NavBar />
-      <SelectMenu />
+    <OutputContextProvider>
+    <div className = "page">
+      <div className = "content">
+        <NavBar />
+        <p> Welcome to FitnessAI! Enter values into to the fields below to get a custom AI generated workout plan that fits your needs.</p>
+        <SelectMenu />
+      </div>
       <Footer />
     </div>
+    </OutputContextProvider>
   );
 }
 

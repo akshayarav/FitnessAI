@@ -1,37 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useContext } from 'react'
+import { OutputContext } from '../../../../context/OutputContext';
 
-const baseURL = process.env.REACT_APP_URL
-
-export default function Output() {
-  const [output, setOutput] = useState(null)
-
-  const fetchOutputs = async () => {
-    try {
-      const response = await axios.get(baseURL)
-      const outputData = JSON.parse(response.data.data[response.data.data.length - 1].body)
-      setOutput(outputData)
-      console.log(outputData)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  useEffect(() => {
-    setOutput(null)
-    fetchOutputs()
-    const intervalId = setInterval(fetchOutputs, 5000); // Fetch data every 5 seconds
-
-    return () => {
-      clearInterval(intervalId); // Clean up interval on unmount
-    };
-  }, [])
-
-
+export default function Output(props) {
+  const { output } = useContext(OutputContext);
   if (!output) return null  // render nothing if output is not available yet
   
-  
-
   const plan = output.plan;
+  console.log("PLAN SET")
+  console.log(plan)
 
   return (
       <div className="plan">

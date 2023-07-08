@@ -30,7 +30,7 @@ def FitnessAI(selection):
     llm = ChatOpenAI(temperature = 0.9, model_name='gpt-3.5-turbo', openai_api_key=key)
 
     prompt= PromptTemplate(
-        input_variables = ["age", "gender", "height","weight","days_per_week","experience", "goal"],
+        input_variables = ["age", "gender", "height","weight","days_per_week","experience", "goal", "id"],
         template = """
         Act as a professional fitness expert and trainer known as FitnessAI. Create a structured summary of an exercise plan specifically tailored for me. 
         I am a {gender}, {age} years old, {height} inches tall and {weight} pounds. I want to work out {days_per_week} days per week, and have {experience} experience 
@@ -42,6 +42,7 @@ def FitnessAI(selection):
               goal: string,
               split: Day x: name,
               exercise_selection: string
+              id {id}
           }}
         }}
         """

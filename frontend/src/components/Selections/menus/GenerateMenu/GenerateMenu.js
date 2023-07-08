@@ -1,41 +1,98 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {AiOutlineReload} from 'react-icons/ai';
+import { v4 as uuid } from 'uuid';
+import $ from "jquery";
+import { OutputContext } from '../../../../context/OutputContext';
 import axios from 'axios'
-import $ from "jquery"
+import GridLoader from "react-spinners/GridLoader";
+import "./generate.css"
 
 
 const baseURL = process.env.REACT_APP_URL
 
 const GenerateMenu =() => {
+    const { setOutput } = useContext(OutputContext);  // get setOutput from OutputContext
     const [isLoading, setIsLoading] = useState(false);
 
-    async function handlePost() {
-      setIsLoading(true)
-      axios.post(baseURL, {
-        age: $("#age").val(),
-        gender: $("#gender").val(),
-        height: $("#height").val(),
-        weight: $("#weight").val(),
-        days_per_week: $("#days_per_week :selected").text(),
-        experience: $("#experience :selected").text(),
-        goal: $("#goal").val()
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setIsLoading(false)
+      function handlePost() {
+        setIsLoading(true)
+        const id = uuid()
+        axios.post(baseURL, {
+          age: $("#age").val(),
+          gender: $("#gender").val(),
+          height: $("#height").val(),
+          weight: $("#weight").val(),
+          days_per_week: $("#days_per_week :selected").text(),
+          experience: $("#experience :selected").text(),
+          goal: $("#goal").val(),
+          id: id
+        })
+        .then(function (response) {
+          console.log(response);
+          return fetchOutputs(id);  
+        })
+        .then(function(output) {
+            console.log(output);
+            setOutput(output)
+            setIsLoading(false)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
+
+    async function fetchOutputs (id) {  // Take id as a parameter
+        let outputData;
+        while (!outputData) {
+          try {
+            const response = await axios.get(baseURL);
+            // Find the element with the same id
+            for (let item of response.data.data) {
+              let body = JSON.parse(item.body);
+              if (body.plan && body.plan.id === id) {
+                outputData = body;
+                break;
+              }
+            }
+            if (!outputData) {
+              // If not found, wait for a moment before trying again
+              await new Promise(resolve => setTimeout(resolve, 2000));
+            }
+          } catch (error) {
+            console.log(error);
+            // In case of error, wait for a moment before trying again
+            await new Promise(resolve => setTimeout(resolve, 2000));
+          }
+        }
+        console.log(outputData.plan.id);
+        return outputData;  // Return the data
+      }
 
     return (
       <div className = "generate">
+      {isLoading ? (
+                // This is the loading animation that displays when isLoading is true.
+        // It uses a div with CSS styles to cover the whole page.
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',  // optional, for a darker background
+          zIndex: 9999,  // optional, to ensure it's on top of everything else
+        }}>
+          <GridLoader />
+        </div>
+      ) : (
         <button type="button" className="btn btn-success" onClick={handlePost} disabled = {isLoading} id="Generate">
-            Generate <AiOutlineReload />
+          Generate <AiOutlineReload />
         </button>
-      </div>
+      )}
+    </div>
     )
 }
 
