@@ -6,9 +6,12 @@ const GenderMenu=() => {
             <h1>
                 Gender:
             </h1>
-            <form>
-                <input id = "gender" type = "text" placeholder="Any"></input>
-            </form>
+            <select id="gender" placeholder="None">
+                <option>None</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
         </div>
 
     )

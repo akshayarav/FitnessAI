@@ -6,12 +6,11 @@
 }
 
 .top {
-    margin-top: 5rem;
+    margin-top: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 50%;
-    gap: 1rem;    
 }
 
 .options {
@@ -42,16 +41,42 @@ h1 {
 }
 
 select {
-    width: 120px;
+    width: 140px;
     font-size: 1.5em;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight:300;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
 }
 
 input {
-    width: 120px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: lighter;
+    width: 140px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+button {
+    width: 200px
+}
+
+.instructions {
+    margin-top: 1rem;
+    text-align: center;
+    padding-bottom: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .instructions p{
+        font-size: 10px;
+    }
 }
 
 

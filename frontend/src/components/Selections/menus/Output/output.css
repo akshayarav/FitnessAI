@@ -1,21 +1,54 @@
 .plan {
-    margin: 20px auto;
-    padding: 20px;
-    background: #f5f5f5;
-    width: 80%;
-    border-radius: 8px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 .plan h1 {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: large;
     text-align: center;
-    margin-bottom: 20px;
+    padding: 20px 0;
 }
 
-.plan div, .plan p {
-    font-size: 18px;
-    line-height: 1.5;
+.plan p{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: small;
+}
+
+.plan details {
+    margin-bottom: 20px;
+    border: 1px solid #007BFF;
+    border-radius: 10px;
+    overflow: hidden;  /* This is to make the border-radius apply to the summary as well */
+}
+
+.plan details[open] {
+    background-color: #f9f9f9;
+}
+
+.plan details summary {
+    cursor: pointer;
+    padding: 10px 20px;
     color: #333;
+    background-color: #6097cf;
+    color: #fff;
+}
+
+.plan details ul {
+    padding: 0 20px 20px 20px;
+    margin: 0;
+    list-style: none;
+}
+
+.plan details ul li {
+    padding: 10px 0;
+    border-top: 1px solid #ccc;
+}
+
+.plan details ul li:first-child {
+    border-top: none;
 }
 
 ul {

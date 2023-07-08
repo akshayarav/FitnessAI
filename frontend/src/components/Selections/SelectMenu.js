@@ -7,6 +7,9 @@ const SelectMenu = () => {
     return (
         <div className = "select">
             <div className = "top">
+            <div className = "instructions">
+                <p> Welcome to FitnessAI! Enter values into to the fields below to get a custom AI generated workout plan that fits your needs.</p>
+            </div>
                 <div className = "options">
                     <div>
                         <AgeMenu /> 

@@ -6,7 +6,7 @@ import './navbar.css'
 
 const NavBar= () =>{
   return (
-    <nav className="navbar navbar-expand-md bg-light">
+    <nav className="navbar navbar-expand-md">
       <div>
         <a href="/">
           <img src={logo} alt="MixerLogo"/>

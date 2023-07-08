@@ -6,7 +6,7 @@ const AgeMenu=() => {
             <h1>
                 Age:
             </h1>
-            <input id = "age">
+            <input id = "age" placeholder='Any'>
             </input>
         </div>
 

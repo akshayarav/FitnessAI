@@ -7,9 +7,11 @@ html, body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #e9ebea;
 }
 
 .content {
     flex: 1 0 auto;
 }
+
 

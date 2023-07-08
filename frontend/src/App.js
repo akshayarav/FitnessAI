@@ -26,7 +26,6 @@ function App() {
     <div className = "page">
       <div className = "content">
         <NavBar />
-        <p> Welcome to FitnessAI! Enter values into to the fields below to get a custom AI generated workout plan that fits your needs.</p>
         <SelectMenu />
       </div>
       <Footer />

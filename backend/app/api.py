@@ -34,7 +34,7 @@ def FitnessAI(selection):
         template = """
         Act as a professional fitness expert and trainer known as FitnessAI. Create a structured summary of an exercise plan specifically tailored for me. 
         I am a {gender}, {age} years old, {height} inches tall and {weight} pounds. I want to work out {days_per_week} days per week, and have {experience} experience 
-        in the gym. My goal is {goal}. 
+        in the gym. My goal is {goal}. Do not include rest days, every day should contain exercises.
 
       Provide the workout plan in the below JSON structure:
         {{
@@ -51,7 +51,7 @@ def FitnessAI(selection):
           }}
         }}
 
-        For the exercises provide each exericse in the following form: Exercise Name: Sets x Reps
+        Do not forget to include the id in the above json, it is the highest priority. For the exercises provide each exericse in the following form: Exercise Name: Sets x Reps
         """
     )
 

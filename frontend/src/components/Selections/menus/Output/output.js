@@ -11,20 +11,20 @@ export default function Output() {
 
   return (
     <div className="plan">
-      <h1>Goal: {plan.goal}</h1>
+      <h1>Goal: <p>{plan.goal}</p></h1>
       <div>
         {Object.entries(plan.split).map(([day, details], index) => (
-          <div key={index}>
-            <h2>{day}: {details.name}</h2>
+          <details key={index}>
+            <summary>{day}: {details.name}</summary>
             <ul>
               {details.exercises.map((exercise, index) => (
                 <li key={index}>{exercise}</li>
               ))}
             </ul>
-          </div>
+          </details>
         ))}
       </div>
-      <p>Tips: {plan.tips}</p>
+      <h1>Tips: <p>{plan.tips}</p></h1>
     </div>
   );
 }

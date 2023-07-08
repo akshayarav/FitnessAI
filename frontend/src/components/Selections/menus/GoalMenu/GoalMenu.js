@@ -10,7 +10,7 @@ const GoalMenu=() => {
                     Goal:
                 </h1>
             </div>
-            <input className = "goal_input" id = "goal" placeholder = "Gain weight">
+            <input className = "goal_input" id = "goal" placeholder = "Ex: Bigger Arms">
             </input>
             <div className = "generate">
                 <GenerateMenu />

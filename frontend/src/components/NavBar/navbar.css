@@ -1,6 +1,7 @@
 .navbar {
     display: flex;
     justify-content: space-between;
+    background-color: #e9ebea;
 }
 
 .nav-link {
@@ -9,9 +10,23 @@
 }
 
 .nav-main {
-    font-size: 30px;
-    font-family: "Courier";
-    font-weight: bold;
+    font-size: 32px; 
+    color: #051550; 
+    position: relative;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.nav-main:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 4px;
+    width: 130px;
+    background: #051550;
+    border-radius: 2px;
 }
 
 .logo {
