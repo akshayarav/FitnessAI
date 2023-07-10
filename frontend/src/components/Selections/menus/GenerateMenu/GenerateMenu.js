@@ -70,8 +70,6 @@ const GenerateMenu =() => {
     return (
       <div className = "generate">
       {isLoading ? (
-                // This is the loading animation that displays when isLoading is true.
-        // It uses a div with CSS styles to cover the whole page.
         <div style={{
           position: 'fixed',
           top: 0,
@@ -81,16 +79,19 @@ const GenerateMenu =() => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',  // optional, for a darker background
-          zIndex: 9999,  // optional, to ensure it's on top of everything else
+          flexDirection: 'column',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+          zIndex: 9999,
         }}>
+          <div>
           <GridLoader />
         </div>
-      ) : (
-        <button type="button" className="btn btn-success" onClick={handlePost} disabled = {isLoading} id="Generate">
-          Generate <AiOutlineReload />
-        </button>
-      )}
+        <p> Generating Workout </p>
+        </div>
+      ): <div> </div>}
+      <button type="button" className="btn btn-success" onClick={handlePost} disabled = {isLoading} id="Generate">
+        Generate <AiOutlineReload />
+      </button>
     </div>
     )
 }

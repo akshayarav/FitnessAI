@@ -1,7 +1,7 @@
 # FitnessAI
 A Full Stack Application created for fun and as a learning experience! FitnessAI connects ChatGPT to an interactive UI, generating and displaying custom workout plans based on user inputs.
 
-This project is currently in development with several known issues. 
+This project is currently in development with more features to be added
 
 Current deployment link:
 https://fitness-ai.netlify.app
