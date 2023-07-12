@@ -92,46 +92,26 @@ def clear():
   return {"data": "Outputs Cleared"}
 
 memory = ConversationBufferMemory(memory_key="chat_history",return_messages=True)
+from pydantic import BaseModel
 
-@app.websocket("/chat")
-async def websocket_endpoint(websocket: WebSocket):
-    await websocket.accept()
-    chat_history = []
-    while True:
-        try:
-            
-            question = await websocket.receive_text()
-            question = json.loads(question)
-            question1 = question['question']
-           
-            
-            template = """You are an AI Bot that will work as a fitness coach. Your job is to help the /
-            user learn about fitness and to give them advice based on their input, which may be a question. Your output can be either a question or a suggestion.
-            {chat_history}
-            Human: {question}
-            AI: 
-            """
-            prompt_template = PromptTemplate(input_variables=["chat_history","question"], template=template)
-            prompt_chain = LLMChain(
-                llm=OpenAI(max_tokens = 1000, openai_api_key=key),
-                prompt=prompt_template,
-                verbose=True,
-                memory = memory,
-            )
-            answer = prompt_chain.predict(question=question1)
-            
-            try:
-                await websocket.send_text(answer)
-                
-                
-                
-            except json.JSONDecodeError:
-                await websocket.send_text(json.JSONDecodeError)
-                      
-        except WebSocketDisconnect:
-            logging.info("websocket disconnect")
-            break
-        except Exception as e:
-            logging.error(e)
-            
-            await websocket.send_json("Sorry something went wrong")
+class ChatInput(BaseModel):
+    question: str
+@app.post("/chat")
+async def chat_endpoint(input_data: ChatInput):
+    question = input_data.question
+    print(input)
+    template = """You are an AI Bot that will work as a fitness coach. Your job is to help the /
+    user learn about fitness and to give them advice based on their input, which may be a question. Your output can be either a question or a suggestion.
+    {chat_history}
+    Human: {question}
+    AI: 
+    """
+    prompt_template = PromptTemplate(input_variables=["chat_history","question"], template=template)
+    prompt_chain = LLMChain(
+        llm=OpenAI(max_tokens = 1000, openai_api_key=key),
+        prompt=prompt_template,
+        verbose=True,
+        memory = memory,
+    )
+    answer = prompt_chain.predict(question=question)
+    return {"answer": answer}
