@@ -8,15 +8,17 @@ class Message {
         this.message = message;
         this.isMine = isMine;
         this.timestamp = timestamp;
-        this.ref = React.createRef();
     }
 }
 
 const ChatBox = () => {
     const [isExpanded, setIsExpanded] = useState(false);
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState([
+        new Message("Hi there! How can I help you with your fitness goals?", false, new Date().toLocaleTimeString())
+    ]);
     const [input, setInput] = useState('');
     const socketRef = useRef(null);
+    const messagesEndRef = useRef(null);
 
     useEffect(() => {
         socketRef.current = new WebSocket('ws://localhost:8000/chat');
@@ -52,8 +54,8 @@ const ChatBox = () => {
     };
 
     useEffect(() => {
-        if (messages.length > 0) {
-            messages[messages.length - 1].ref.current.scrollIntoView({ behavior: 'smooth' });
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
         }
     }, [messages]);
 
@@ -64,9 +66,9 @@ const ChatBox = () => {
                     <button className="collapse-button" onClick={() => setIsExpanded(false)}>
                         Collapse < BsArrowsExpand/>
                     </button>
-                    <div className="message-container">
+                    <div className="message-container" ref={messagesEndRef}>
                         {messages.map((message, index) => (
-                            <div key={index} className={message.isMine ? 'my-message' : 'other-message'} ref={message.ref}>
+                            <div key={index} className={message.isMine ? 'my-message' : 'other-message'}>
                                 <p>{message.message}</p>
                                 <p className="timestamp">{message.timestamp}</p>
                             </div>
