@@ -11,6 +11,8 @@ class Message {
     }
 }
 
+const baseURL = process.env.REACT_APP_WS
+
 const ChatBox = () => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [messages, setMessages] = useState([
@@ -21,7 +23,7 @@ const ChatBox = () => {
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
-        socketRef.current = new WebSocket('ws://localhost:8000/chat');
+        socketRef.current = new WebSocket(baseURL);
 
         socketRef.current.addEventListener('open', function(event) {
             console.log("WebSocket connection established");
