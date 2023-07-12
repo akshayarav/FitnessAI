@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import './index.css'
 import { OutputContextProvider } from "./context/OutputContextProvider";
+import ChatBox from './components/Chat/ChatBox'
 
 
 const baseURL = process.env.REACT_APP_URL
@@ -27,6 +28,7 @@ function App() {
       <div className = "content">
         <NavBar />
         <SelectMenu />
+        <ChatBox />
       </div>
       <Footer />
     </div>
