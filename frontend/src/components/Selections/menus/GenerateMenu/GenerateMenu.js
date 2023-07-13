@@ -20,7 +20,7 @@ const GenerateMenu =() => {
       let timer = setTimeout(() => { // Set a timeout to update the 'isTimeout' state after 15 seconds
         setIsLoading(false);
         setIsTimeout(true);
-      }, 1000); 
+      }, 15000); 
       try {
           await axios.post(baseURL, {
             age: $("#age").val(),
