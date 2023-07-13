@@ -96,6 +96,7 @@ from pydantic import BaseModel
 
 class ChatInput(BaseModel):
     question: str
+
 @app.post("/chat")
 async def chat_endpoint(input_data: ChatInput):
     question = input_data.question
