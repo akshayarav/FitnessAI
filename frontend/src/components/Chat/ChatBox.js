@@ -3,6 +3,7 @@ import { BsArrowsExpand } from 'react-icons/bs';
 import {AiOutlineExpandAlt} from 'react-icons/ai';
 import './ChatBox.css';
 import axios from 'axios';
+import PulseLoader from "react-spinners/PulseLoader";
 
 class Message {
     constructor(message, isMine, timestamp) {
@@ -20,8 +21,8 @@ const ChatBox = () => {
         new Message("Hi there! How can I help you with your fitness goals?", false, new Date().toLocaleTimeString())
     ]);
     const [input, setInput] = useState('');
-    const socketRef = useRef(null);
     const messagesEndRef = useRef(null);
+    const [isLoading, setIsLoading] = useState(false)
 
 
     const handleMessageSubmit = async (e) => {
@@ -32,12 +33,14 @@ const ChatBox = () => {
             setInput('');
     
             try {
-                console.log(input)
+                setIsLoading(true);
                 const response = await axios.post(baseURL + 'chat', {question: input});
                 const messageFromServer = response.data.answer;
                 setMessages(prevMessages => [...prevMessages, new Message(messageFromServer, false, new Date().toLocaleTimeString())]);
             } catch (err) {
                 console.error(err);
+            } finally {
+                setIsLoading(false);
             }
         }
     };
@@ -50,38 +53,47 @@ const ChatBox = () => {
 
     return (
         <div className={`chat-container ${isExpanded ? 'expanded' : 'minimized'}`}>
-            {isExpanded ? (
-                <>
-                    <button className="collapse-button" onClick={() => setIsExpanded(false)}>
-                        Collapse < BsArrowsExpand/>
-                    </button>
-                    <div className="message-container" ref={messagesEndRef}>
-                        {messages.map((message, index) => (
-                            <div key={index} className={message.isMine ? 'my-message' : 'other-message'}>
-                                <p>{message.message}</p>
-                                <p className="timestamp">{message.timestamp}</p>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="input-container">
-                        <form onSubmit={handleMessageSubmit}>
-                            <input 
-                                type="text"
-                                placeholder="Type a message..."
-                                value={input}
-                                onChange={e => setInput(e.target.value)}
-                            />
-                        </form>
-                    </div>
-                </>
-            ) : (
-                <div onClick={() => setIsExpanded(true)} className="minimized">
-                    <span>Chat <AiOutlineExpandAlt /> </span>
-                </div>
-            )}
+          {isExpanded ? (
+            <>
+              <button className="collapse-button" onClick={() => setIsExpanded(false)}>
+                Collapse <BsArrowsExpand />
+              </button>
+              <div className="message-container" ref={messagesEndRef}>
+                {messages.map((message, index) => (
+                  <div key={index} className={message.isMine ? 'my-message' : 'other-message'}>
+                    <p>{message.message}</p>
+                    <p className="timestamp">{message.timestamp}</p>
+                  </div>
+                ))}
+                {isLoading && (
+                  <div className="loading-message">
+                    <PulseLoader />
+                  </div>
+                )}
+              </div>
+              <div className="input-container">
+                <form onSubmit={handleMessageSubmit}>
+                  <input
+                    type="text"
+                    placeholder="Type a message..."
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                  />
+                </form>
+              </div>
+            </>
+          ) : (
+            <div onClick={() => setIsExpanded(true)} className="minimized">
+              <span>
+                Chat <AiOutlineExpandAlt />{' '}
+              </span>
+            </div>
+          )}
         </div>
-    );
+      );
+    };
     
-}
+    export default ChatBox;
+    
+    
 
-export default ChatBox;
