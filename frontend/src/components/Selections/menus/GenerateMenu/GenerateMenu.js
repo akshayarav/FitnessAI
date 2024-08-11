@@ -50,7 +50,8 @@ const GenerateMenu =() => {
           const response = await axios.get(baseURL);
           // Find the element with the same id
           for (let item of response.data.data) {
-            let body = JSON.parse(item.body);
+            console.log(item)
+            let body = item.body;
             console.log(body.plan.id)
             if (body.plan.id === id) {
               outputData = body;
